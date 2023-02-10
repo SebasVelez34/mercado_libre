@@ -37,21 +37,23 @@ export default function SearchResultPage () {
   return (
     <>
       <section>
-        <ul>
-          {items?.items && items.items.map(item => {
-            return (
-              <ResultCard
-                id={item.id}
-                title={item.title}
-                picture={item.picture}
-                amount={item.price.amount}
-                key={item.id}
-                onClick={() => handleClick(item.id)}
-              />
-            )
-          })}
+        <div className='result-container'>
+          <ol>
+            {items?.items && items.items.map(item => {
+              return (
+                <ResultCard
+                  id={item.id}
+                  title={item.title}
+                  picture={item.picture}
+                  amount={item.price.amount}
+                  key={item.id}
+                  onClick={() => handleClick(item.id)}
+                />
+              )
+            })}
 
-        </ul>
+          </ol>
+        </div>
       </section>
     </>
   )
