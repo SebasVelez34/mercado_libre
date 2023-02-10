@@ -1,0 +1,22 @@
+.card {
+  display: flex;
+  width: 100%;
+  .container {
+    border-radius: 4px 4px 0 0;
+    border-radius: 0;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    padding: 16px;
+    position: relative;
+    width: 100%;
+  }
+  .img-container {
+    padding: 0 16px;
+    img {
+      width: 180px;
+      height: 180px;
+      border-radius: 180px;
+    }
+  }
+}
