@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function ResultCard ({ id, picture, title, amount, onClick }) {
+export default function ResultCard ({ id, picture, title, amount }) {
   return (
     <li className='card-search-layout'>
       <div className='card'>
         <div className='container'>
-          <div className='img-container' onClick={onClick}>
+          <div className='img-container'>
             <Link to={`/items/${id}`}>
               <figure>
                 <div className='overlay-image' />
