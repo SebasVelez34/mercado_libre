@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 function ResultCard ({ id, picture, title, amount, location, tabIndex }) {
   const ariaLabel = `Ver detalles del producto ${title} y su descripción`
@@ -8,7 +9,7 @@ function ResultCard ({ id, picture, title, amount, location, tabIndex }) {
       <div className='card'>
         <div className='container'>
           <div className='img-container'>
-            <Link to={`/items/${id}`} ariaLabel={ariaLabel} role='link'>
+            <Link to={`/items/${id}`} aria-label={ariaLabel} role='link'>
               <figure>
                 <div className='overlay-image' />
                 <img src={picture} alt={`Imagen del producto ${title}`} />
@@ -20,7 +21,7 @@ function ResultCard ({ id, picture, title, amount, location, tabIndex }) {
               <span>$ {amount}</span>
             </div>
             <div className='info-title'>
-              <Link to={`/items/${id}`} ariaLabel={ariaLabel} role='link'><h2>{title}</h2></Link>
+              <Link to={`/items/${id}`} aria-label={ariaLabel} role='link'><h2>{title}</h2></Link>
             </div>
           </div>
           <div className='location-container'>
@@ -30,6 +31,15 @@ function ResultCard ({ id, picture, title, amount, location, tabIndex }) {
       </div>
     </li>
   )
+}
+
+ResultCard.propTypes = {
+  id: PropTypes.string,
+  picture: PropTypes.string,
+  title: PropTypes.string,
+  amount: PropTypes.number,
+  location: PropTypes.string,
+  tabIndex: PropTypes.number
 }
 
 export default React.memo(ResultCard)

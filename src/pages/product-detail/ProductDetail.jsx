@@ -1,14 +1,14 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
 import { Description, ImageContainer, Price } from './components'
-import { useDescription } from './hooks/useDescription'
 import { useFetchItem } from '../../hooks'
 import Seo from '../../components/Seo'
+import { ErrorBoundary } from '../../utils'
+import ErrorFallback from '../../components/ErrorFallback'
 
 export default function ProductDetailPage () {
   const { id } = useParams()
-  const [product, loading] = useFetchItem({ id })
+  const [product, loading, error] = useFetchItem({ id })
 
   if (loading) {
     return <>Cargando</>
@@ -22,15 +22,21 @@ export default function ProductDetailPage () {
       />
       <section>
         <div className='item'>
-          <div className='item-container'>
-            <ImageContainer picture={product.picture} />
-            <Price
-              condition={product.condition}
-              title={product.title}
-              amount={product.price.amount}
-              soldQuantity={product.sold_quantity}
-            />
-          </div>
+          <ErrorBoundary
+            fallBackComponent={<ErrorFallback />}
+            resetCondition={!error}
+            error={error}
+          >
+            <div className='item-container'>
+              <ImageContainer picture={product.picture} />
+              <Price
+                condition={product.condition}
+                title={product.title}
+                amount={product.price.amount}
+                soldQuantity={product.sold_quantity}
+              />
+            </div>
+          </ErrorBoundary>
           <Description id={id} />
         </div>
       </section>

@@ -13,7 +13,7 @@ export const useFetchItem = ({ id }) => {
   useEffect(() => {
     dispatchItems()
   }, [id])
-  const { entities: { item: product }, loading } = useSelector(state => state.item)
+  const { entities: { item: product }, loading, error } = useSelector(state => state.item)
 
-  return [product, loading]
+  return [product, loading, error]
 }

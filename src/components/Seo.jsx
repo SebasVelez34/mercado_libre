@@ -1,6 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-
+import PropTypes from 'prop-types'
 function Seo ({ appName = 'MercadoLibre', title, description, children }) {
   return (
     <Helmet>
@@ -9,6 +9,12 @@ function Seo ({ appName = 'MercadoLibre', title, description, children }) {
       {children}
     </Helmet>
   )
+}
+
+Seo.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  children: PropTypes.element
 }
 
 export default React.memo(Seo)

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
 export default function ImageContainer ({ picture }) {
   return (
     <div className='item-image'>
@@ -8,4 +8,8 @@ export default function ImageContainer ({ picture }) {
       </figure>
     </div>
   )
+}
+
+ImageContainer.propTypes = {
+  picture: PropTypes.string
 }

@@ -5,12 +5,20 @@ const ITEM_LIST = 'itemList'
 
 const fetchItemsList = createAsyncThunk(
   `${ITEM_LIST}/fetchItemsListStatus`,
-  async (url) => await fetchItems(url)
+  async (url) => {
+    try {
+      const response = await fetchItems(url)
+      return response
+    } catch (err) {
+      throw new Error(err)
+    }
+  }
 )
 
 const initialState = {
   entities: {},
-  loading: false
+  loading: false,
+  error: null
 }
 
 export const itemsListSlice = createSlice({
@@ -29,8 +37,9 @@ export const itemsListSlice = createSlice({
       state.loading = false
       state.entities = { ...state.entities, ...payload }
     })
-    builder.addCase(fetchItemsList.rejected, (state, { payload }) => {
+    builder.addCase(fetchItemsList.rejected, (state, { error }) => {
       state.loading = false
+      state.error = error.message
     })
   }
 })
