@@ -6,12 +6,15 @@ import {
   searchReducer
 } from './slices'
 
-const store = configureStore({
-  reducer: {
-    search: searchReducer,
-    item: itemReducer,
-    searchItems: searchItemsReducer
-  }
-})
+const rootReducer = {
+  search: searchReducer,
+  item: itemReducer,
+  searchItems: searchItemsReducer
+}
 
-export default store
+export const setupStore = preloadedState => {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState
+  })
+}

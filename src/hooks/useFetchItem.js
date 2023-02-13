@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchItem } from '../redux/slices/item'
 import { MELI_ITEMS_URL } from '../utils/constants'
 
@@ -13,4 +13,7 @@ export const useFetchItem = ({ id }) => {
   useEffect(() => {
     dispatchItems()
   }, [id])
+  const { entities: { item: product }, loading } = useSelector(state => state.item)
+
+  return [product, loading]
 }

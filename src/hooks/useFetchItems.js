@@ -17,4 +17,6 @@ export const useFetchItems = ({ searchParams }) => {
   useEffect(() => {
     getItems()
   }, [searchParams])
+
+  return search
 }

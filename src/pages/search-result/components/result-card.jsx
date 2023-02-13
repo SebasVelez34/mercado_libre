@@ -1,16 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function ResultCard ({ id, picture, title, amount }) {
+function ResultCard ({ id, picture, title, amount, location, tabIndex }) {
+  const ariaLabel = `Ver detalles del producto ${title} y su descripción`
   return (
-    <li className='card-search-layout'>
+    <li className='card-search-layout' tabIndex={tabIndex}>
       <div className='card'>
         <div className='container'>
           <div className='img-container'>
-            <Link to={`/items/${id}`}>
+            <Link to={`/items/${id}`} ariaLabel={ariaLabel} role='link'>
               <figure>
                 <div className='overlay-image' />
-                <img src={picture} />
+                <img src={picture} alt={`Imagen del producto ${title}`} />
               </figure>
             </Link>
           </div>
@@ -19,11 +20,11 @@ export default function ResultCard ({ id, picture, title, amount }) {
               <span>$ {amount}</span>
             </div>
             <div className='info-title'>
-              <Link to={`/items/${id}`}><h2>{title}</h2></Link>
+              <Link to={`/items/${id}`} ariaLabel={ariaLabel} role='link'><h2>{title}</h2></Link>
             </div>
           </div>
           <div className='location-container'>
-            <span>Location</span>
+            <span>{location}</span>
           </div>
         </div>
       </div>
@@ -31,5 +32,4 @@ export default function ResultCard ({ id, picture, title, amount }) {
   )
 }
 
-// 3172209421 Ricardo
-//
+export default React.memo(ResultCard)

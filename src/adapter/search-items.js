@@ -1,10 +1,10 @@
 export const SearchItemsResultAdapter = (BackendApi = []) => {
   return {
     author: {
-      name: 'Sebastiancho',
-      lastname: 'Velez'
+      name: 'User',
+      lastname: 'Default'
     },
-    categories: ['Hola1', 'Hola2'],
+    categories: SearchItemsCategoriesAdapter(BackendApi.filters),
     items: SearchItemsAdapter(BackendApi.results)
   }
 }
@@ -21,7 +21,16 @@ export const SearchItemsAdapter = (items = []) => {
         currency: item.currency_id,
         amount: item.price,
         decimals: 0
-      }
+      },
+      location: item.address.state_name
     }
   })
+}
+
+export const SearchItemsCategoriesAdapter = (filters = []) => {
+  if (!filters.length) return filters
+
+  const [categories] = filters
+
+  return categories?.values.map(value => value.name)
 }

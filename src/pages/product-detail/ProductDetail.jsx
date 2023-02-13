@@ -4,12 +4,11 @@ import { useSelector } from 'react-redux'
 import { Description, ImageContainer, Price } from './components'
 import { useDescription } from './hooks/useDescription'
 import { useFetchItem } from '../../hooks'
+import Seo from '../../components/Seo'
 
 export default function ProductDetailPage () {
   const { id } = useParams()
-  useFetchItem({ id })
-  const [description, descriptionLoading] = useDescription({ id })
-  const { entities: { item: product }, loading } = useSelector(state => state.item)
+  const [product, loading] = useFetchItem({ id })
 
   if (loading) {
     return <>Cargando</>
@@ -17,6 +16,10 @@ export default function ProductDetailPage () {
 
   return (
     <>
+      <Seo
+        title={product.title}
+        description={`Envíos Gratis en el día ✓ Compre ${product.title} ! Conozca nuestras increíbles ofertas y promociones en millones de productos.`}
+      />
       <section>
         <div className='item'>
           <div className='item-container'>
@@ -28,7 +31,7 @@ export default function ProductDetailPage () {
               soldQuantity={product.sold_quantity}
             />
           </div>
-          <Description loading={descriptionLoading} description={description} />
+          <Description id={id} />
         </div>
       </section>
 

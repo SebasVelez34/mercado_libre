@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '../../../components/Button'
 
-export default function Price ({ condition, title, amount, soldQuantity }) {
+function Price ({ condition, title, amount, soldQuantity }) {
   return (
     <div className='item-price'>
       <span className='condition-quantity'>{condition === 'new' ? 'Nuevo' : 'Usado'} - {soldQuantity} Vendidos</span>
@@ -11,3 +11,5 @@ export default function Price ({ condition, title, amount, soldQuantity }) {
     </div>
   )
 }
+
+export default React.memo(Price)

@@ -28,8 +28,8 @@ export default function SearchForm () {
     <form onSubmit={handleSubmit} className='search-form'>
       <label htmlFor='search-input'>Ingresa lo que quieras encontrar</label>
       <Input type='text' onChange={handleChange} className='search-input' placeholder='Nunca dejes de buscar' name='search' />
-      <Button type='submit'>
-        <img src={SearchLogo} />
+      <Button type='submit' ariaLabel='Botón para buscar productos'>
+        <img src={SearchLogo} alt='Icono de búsqueda de productos' />
       </Button>
     </form>
   )

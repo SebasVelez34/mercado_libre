@@ -7,7 +7,9 @@ export default function Search () {
   return (
     <header className='search-header'>
       <div className='container'>
-        <Link to='/'><img className='logo' src={Logo} /></Link>
+        <Link to='/'>
+          <img className='logo' src={Logo} alt='Logo de la página' />
+        </Link>
         <SearchForm />
       </div>
     </header>

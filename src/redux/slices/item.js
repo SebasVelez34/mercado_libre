@@ -22,17 +22,17 @@ export const itemSlice = createSlice({
       return ItemEmptyState
     }
   },
-  extraReducers: {
-    [fetchItem.pending]: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(fetchItem.pending, (state, { payload }) => {
       state.loading = true
-    },
-    [fetchItem.fulfilled]: (state, { payload }) => {
+    })
+    builder.addCase(fetchItem.fulfilled, (state, { payload }) => {
       state.loading = false
       state.entities = { ...state.entities, ...payload }
-    },
-    [fetchItem.rejected]: (state) => {
+    })
+    builder.addCase(fetchItem.rejected, (state, { payload }) => {
       state.loading = false
-    }
+    })
   }
 })
 

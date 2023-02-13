@@ -21,17 +21,17 @@ export const itemsListSlice = createSlice({
       return initialState
     }
   },
-  extraReducers: {
-    [fetchItemsList.pending]: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(fetchItemsList.pending, (state, { payload }) => {
       state.loading = true
-    },
-    [fetchItemsList.fulfilled]: (state, { payload }) => {
+    })
+    builder.addCase(fetchItemsList.fulfilled, (state, { payload }) => {
       state.loading = false
       state.entities = { ...state.entities, ...payload }
-    },
-    [fetchItemsList.rejected]: (state) => {
+    })
+    builder.addCase(fetchItemsList.rejected, (state, { payload }) => {
       state.loading = false
-    }
+    })
   }
 })
 

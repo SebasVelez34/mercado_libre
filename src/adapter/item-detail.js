@@ -16,8 +16,8 @@ export const ItemsDetailAdapter = (BackendResult = {}) => {
 
   return {
     author: {
-      name: 'Sebastiancho',
-      lastname: 'Velez'
+      name: 'User',
+      lastname: 'Default'
     },
     item: {
       id,
