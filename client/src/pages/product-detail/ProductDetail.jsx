@@ -9,6 +9,7 @@ import ErrorFallback from '../../components/ErrorFallback'
 export default function ProductDetailPage () {
   const { id } = useParams()
   const [product, loading, error] = useFetchItem({ id })
+  console.log('🚀 ~ file: ProductDetail.jsx:12 ~ ProductDetailPage ~ product', product)
 
   if (loading) {
     return <>Cargando</>
@@ -37,7 +38,7 @@ export default function ProductDetailPage () {
               />
             </div>
           </ErrorBoundary>
-          <Description id={id} />
+          <Description description={product.description} />
         </div>
       </section>
 

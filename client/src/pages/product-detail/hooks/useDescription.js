@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { fetchItemDescriptionDetail } from '../../../services'
-import { MELI_ITEMS_DESCRIPTION_URL } from '../../../utils/constants'
+import { SERVER_BASE_API_URL } from '../../../utils/constants'
 
 export const useDescription = ({ id }) => {
   const [description, setDescription] = useState('')
@@ -9,7 +9,7 @@ export const useDescription = ({ id }) => {
 
   const fetchItemDescription = async () => {
     setLoading(true)
-    await fetchItemDescriptionDetail(`${MELI_ITEMS_DESCRIPTION_URL({ id })}`)
+    await fetchItemDescriptionDetail(`${SERVER_BASE_API_URL}/items/${id}/description`)
       .then(value => {
         setDescription(value.description)
         setLoading(false)

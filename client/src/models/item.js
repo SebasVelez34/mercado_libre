@@ -7,6 +7,7 @@ export const ItemEmptyState = {
     picture: '',
     condition: '',
     free_shipping: false,
-    sold_quantity: 0
+    sold_quantity: 0,
+    description: ''
   }
 }

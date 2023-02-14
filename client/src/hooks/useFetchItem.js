@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchItem } from '../redux/slices/item'
-import { MELI_ITEMS_URL } from '../utils/constants'
+import { SERVER_BASE_API_URL } from '../utils/constants'
 
 export const useFetchItem = ({ id }) => {
   const dispatch = useDispatch()
 
   const dispatchItems = () => {
-    dispatch(fetchItem(`${MELI_ITEMS_URL}/${id}`))
+    dispatch(fetchItem(`${SERVER_BASE_API_URL}/items/${id}`))
   }
 
   useEffect(() => {
