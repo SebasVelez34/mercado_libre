@@ -25,7 +25,6 @@ _Se debe tener instalado en la máquina los siguientes paquetes_
 ```
 npm
 node-js
-
 ```
 ### Tecnologias Usadas
 
