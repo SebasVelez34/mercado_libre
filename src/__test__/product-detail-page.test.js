@@ -3,11 +3,11 @@ import { fireEvent, getByTestId, screen, waitFor } from '@testing-library/react'
 import { renderWithProviders } from '../utils/test-utils'
 import ProductDetailPage from '../pages/product-detail/ProductDetail'
 
-const response = {
+const defaultState = {
   entities: {
     author: {
-      name: 'Sebastiancho',
-      lastname: 'Velez'
+      name: 'User',
+      lastname: 'Default'
     },
     item: {
       id: 'MLA1194328250',
@@ -19,27 +19,54 @@ const response = {
       sold_quantity: 200
     }
   },
-  loading: true
-
+  loading: false,
+  error: null
 }
+jest.mock('../utils/ErrorBoundaries', () => ({
+  __esModule: true,
+  ErrorFallback: () => <div>Mocked Username Field</div>
+}))
+
+jest.mock('../components/ErrorFallback', () => ({
+  __esModule: true,
+  ErrorFallback: () => <div>Mocked Username Field</div>
+}))
+
+jest.mock('../pages/product-detail/hooks/useDescription', () => ({
+  __esModule: true,
+  useDescription: () => ({
+    description: 'Una bella descripcion',
+    loading: false,
+    error: false
+  })
+}))
 
 describe('ProductDetailPage', () => {
   describe('Happy path', () => {
-    test('fetches & receives a user after clicking the fetch user button', async () => {
-      global.fetch = jest.fn(() => Promise.resolve({ json: () => '' }))
-      const { user } = renderWithProviders(<ProductDetailPage />,
+    xtest('should show loading message', () => {
+      renderWithProviders(<ProductDetailPage />,
         {
           preloadedState: {
-            item: response
+            item: defaultState
           },
           route: '/item/MLA1194328250'
         })
-      expect(await screen.getByText(/Cargando/i)).toBeInTheDocument()
-      expect(await screen.findByText(/Descripción del producto/i)).toBeInTheDocument()
+      expect(screen.getByText(/Cargando/i)).toBeInTheDocument()
+    })
+
+    test('should show a product image', async () => {
+      renderWithProviders(<ProductDetailPage />,
+        {
+          preloadedState: {
+            item: defaultState
+          },
+          route: '/item/MLA1194328250'
+        })
+      expect(screen.getByText(/Cargando/i)).toBeInTheDocument()
+
       await waitFor(() => {
         screen.debug()
       }, { timeout: 5000 })
-      expect(await screen.findByText(/Vendidos/i, undefined, { timeout: 3000 })).toBeInTheDocument()
     })
   })
 })

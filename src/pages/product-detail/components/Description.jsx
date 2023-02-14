@@ -3,8 +3,9 @@ import { useDescription } from '../hooks/useDescription'
 import PropTypes from 'prop-types'
 import { ErrorBoundary } from '../../../utils'
 import ErrorFallback from '../../../components/ErrorFallback'
-export default function Description ({ id }) {
+function Description ({ id }) {
   const [description, loading, error] = useDescription({ id })
+  console.log('🚀 ~ file: Description.jsx:8 ~ Description ~ description', description)
 
   if (loading && !error) {
     return <>Cargando</>
@@ -30,3 +31,5 @@ export default function Description ({ id }) {
 Description.propTypes = {
   id: PropTypes.string
 }
+
+export default React.memo(Description)
